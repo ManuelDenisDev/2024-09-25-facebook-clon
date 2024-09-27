@@ -1,0 +1,78 @@
+---
+import { Icon } from 'astro-icon/components'
+
+import NavLink from './NavLink.astro'
+import FotoPerfil from '@components/shared/FotoPerfil.astro'
+
+interface Enlaces {
+  name: string
+  icon: string
+  href: string
+}
+
+const enlaces = [
+  {
+    name: 'Inicio',
+    icon: 'home-outline',
+    href: '/'
+  },
+  {
+    name: 'Videos',
+    icon: 'video-outline',
+    href: '/videos'
+  },
+  {
+    name: 'Marketplace',
+    icon: 'marketplace-outline',
+    href: '/marketplace'
+  },
+  {
+    name: 'Grupos',
+    icon: 'grupos-outline',
+    href: '/grupos'
+  },
+  {
+    name: 'Juegos',
+    icon: 'videojuegos-outline',
+    href: '/juegos'
+  }
+]
+---
+
+<header class='flex justify-between backdrop-blur-sm shadow-md w-full fixed bg-white z-30'>
+  <div class='flex gap-2 py-2 pl-4 flex-1'>
+    <Icon name='isologo' class='size-10' />
+    <span class='size-10 bg-zinc-100 flex items-center justify-center text-zinc-600 rounded-full'>
+      <Icon name='search-outline' />
+    </span>
+  </div>
+  <div>
+    <nav class='hidden md:block h-full'>
+      {
+        enlaces.map((enlace: Enlaces) => (
+          <NavLink href={enlace.href} icon={enlace.icon}>
+            {enlace.name}
+          </NavLink>
+        ))
+      }
+    </nav>
+  </div>
+  <ul class='flex justify-end gap-2 py-2 pr-4 flex-1'>
+    <li class='size-10 bg-zinc-100 flex items-center justify-center text-zinc-900 rounded-full'>
+      <Icon name='dashboard' class='size-5' />
+    </li>
+    <li class='size-10 bg-zinc-100 flex items-center justify-center text-zinc-900 rounded-full'>
+      <Icon name='messenger' class='size-5' />
+    </li>
+    <li class='size-10 bg-zinc-100 flex items-center justify-center text-zinc-900 rounded-full'>
+      <Icon name='notifications' class='size-5' />
+    </li>
+    <li class='size-10 rounded-full bg-zinc-200 flex relative'>
+      <FotoPerfil />
+      <Icon
+        name='chevron-down'
+        class='size-4 absolute bottom-0 -right-1 bg-zinc-200 rounded-full border-2 border-white'
+      />
+    </li>
+  </ul>
+</header>

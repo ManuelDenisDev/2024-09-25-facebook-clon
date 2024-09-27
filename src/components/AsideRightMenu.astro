@@ -1,0 +1,68 @@
+---
+import AsideRightPublicidadCard from './AsideRightPublicidadCard.astro'
+import AsideTitulos from './shared/AsideTitulos.astro'
+
+import publicidad01 from '@assets/publicidad/01.png'
+import publicidad02 from '@assets/publicidad/02.png'
+import publicidad03 from '@assets/publicidad/03.png'
+import Separador from './shared/Separador.astro'
+import AsideRightAmigos from './AsideRightAmigos.astro'
+
+const dataPublicidad = [
+  {
+    imagen: publicidad01,
+    titulo: 'Publicidad 1',
+    descripcion: 'Descripción de la publicidad 1'
+  },
+  {
+    imagen: publicidad02,
+    titulo: 'Publicidad 2',
+    descripcion: 'Descripción de la publicidad 2'
+  },
+  {
+    imagen: publicidad03,
+    titulo: 'Publicidad 3',
+    descripcion: 'Descripción de la publicidad 3'
+  }
+]
+
+import AsideTituloIcono from './shared/AsideTituloIcono.astro'
+
+
+
+import { getPersonajesDBZ } from '@services/personajesDBZ'
+
+const personajes = await getPersonajesDBZ()
+---
+
+<div
+  class='flex flex-col flex-1 pt-5 pb-28 overflow-y-auto overflow-x-hidden scrollbar scrollbar-w-2 scrollbar-thumb-rounded-[0.1667rem] scrollbar-thumb-slate-200 scrollbar-track-gray-400 dark:scrollbar-thumb-slate-900 dark:scrollbar-track-gray-800'
+>
+  <section class='flex flex-col w-full mt-2'>
+    <AsideTitulos titulo='Publicidad' />
+
+    {
+      dataPublicidad.map(({ imagen, titulo, descripcion }) => (
+        <AsideRightPublicidadCard imagen={imagen} titulo={titulo} descripcion={descripcion} />
+      ))
+    }
+  </section>
+
+  <Separador />
+  <AsideTitulos titulo='Tus páginas y perfiles' />
+
+  <Separador />
+  <AsideTitulos titulo='Cumpleaños' />
+  <Separador />
+  <AsideTitulos titulo='Contactos' />
+  <ul class='flex flex-col w-full mt-2'>
+    {
+      personajes.map(({ name, image, race, id }) => (
+        <AsideRightAmigos nombre={name} imagen={image} race={race} id={id} />
+      ))
+    }
+  </ul>
+  <Separador />
+  <AsideTitulos titulo='Chats en grupo' />
+  <AsideTituloIcono icono='plus' nombre='Ver todo' />s
+</div>

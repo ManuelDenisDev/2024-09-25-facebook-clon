@@ -1,0 +1,15 @@
+---
+import Image from 'astro/components/Image.astro'
+
+const { imagen, titulo, descripcion } = Astro.props
+---
+
+<article class='flex rounded-lg hover:bg-zinc-200 items-center justify-center gap-2 p-2'>
+  <figure class='w-1/2  object-cover rounded-lg'>
+    <Image src={imagen} alt='Publicidad' class='w-full h-auto aspect-[4/3] rounded-lg' />
+  </figure>
+  <main>
+    <h2 class='text-sm text-zinc-900 font-semibold'>{titulo}</h2>
+    <p class='text-xs'>{descripcion}</p>
+  </main>
+</article>

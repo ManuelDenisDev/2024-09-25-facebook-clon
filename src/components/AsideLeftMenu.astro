@@ -1,0 +1,70 @@
+---
+import AsideLeftAccesosDirectos from './AsideLeftAccesosDirectos.astro'
+import AsideLeftMenuItemFoto from './AsideLeftMenuItemFoto.astro'
+import AsideLeftMenuItemIcon from './AsideLeftMenuItemIcon.astro'
+import AsideTituloIcono from './shared/AsideTituloIcono.astro'
+import AsideTitulos from './shared/AsideTitulos.astro'
+import Separador from './shared/Separador.astro'
+
+const dataAsideLeftMenu = [
+  { icono: 'amigos-gradient', titulo: 'Amigos' },
+  { icono: 'recuerdos-gradient', titulo: 'Recuerdos' },
+  { icono: 'guardado-gradient', titulo: 'Guardado' },
+  { icono: 'grupos-gradient', titulo: 'Grupos' },
+  { icono: 'video-gradient', titulo: 'Videos' },
+  { icono: 'marketplace-gradient', titulo: 'Marketplace' },
+  { icono: 'feed-gradient', titulo: 'Feed' }
+]
+
+import fotoPerfil from '@assets/mandendev-foto-perfil.png'
+
+const dataAsideLeftAccesos = [
+  { nombre: 'Spotify Clone', categoria: 'Practicas', imagen: fotoPerfil },
+  { nombre: 'Elena Cibaja', categoria: 'Portafolio', imagen: fotoPerfil },
+  { nombre: 'ManDenDev', categoria: 'Portafolio', imagen: fotoPerfil }
+]
+
+const dataAsideLeftFooter = [
+  { nombre: 'Privacidad', link: '#' },
+  { nombre: 'Condiciones', link: '#' },
+  { nombre: 'Publicidad', link: '#' },
+  { nombre: 'Opciones de anuncios', link: '#' },
+  { nombre: 'Cookies', link: '#' },
+  { nombre: 'Más', link: '#' },
+  { nombre: 'Madebook © 2024', link: '#' }
+]
+---
+
+<div
+  class='flex flex-col flex-1 pt-5 pb-28 overflow-y-auto overflow-x-hidden scrollbar scrollbar-w-2 scrollbar-thumb-rounded-[0.1667rem] scrollbar-thumb-slate-200 scrollbar-track-gray-400 dark:scrollbar-thumb-slate-900 dark:scrollbar-track-gray-800'
+>
+  <ul class='flex flex-col w-full mt-2'>
+    <AsideLeftMenuItemFoto />
+
+    {dataAsideLeftMenu.map(({ icono, titulo }) => <AsideLeftMenuItemIcon icono={icono} titulo={titulo} />)}
+    <AsideTituloIcono icono='chevron-down' nombre='Ver todo' />
+  </ul>
+
+  <Separador />
+  <AsideTitulos titulo='Tus accesos directos' />
+  <ul class='flex flex-col w-full mt-2'>
+    {
+      dataAsideLeftAccesos.map(({ nombre, categoria, imagen }) => (
+        <AsideLeftAccesosDirectos nombre={nombre} categoria={categoria} imagen={imagen} />
+      ))
+    }
+    <AsideTituloIcono icono='chevron-down' nombre='Ver todo' />
+  </ul>
+  <Separador />
+  <footer class="flex flex-wrap items-center mx-4 gap-x-2">
+
+    {
+      dataAsideLeftFooter.map(({ nombre, link }) => (
+        <a href={link} class='text-xs text-zinc-500  hover:underline'>
+          {nombre}
+        </a>
+        <span class="text-zinc-500">·</span>
+    ))
+  }
+  </footer>
+</div>

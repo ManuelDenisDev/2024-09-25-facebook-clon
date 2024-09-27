@@ -1,0 +1,14 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const { icono, titulo } = Astro.props
+---
+
+<li class='flex justify-between p-1 rounded-xl hover:bg-zinc-200 group cursor-pointer transition-colors duration-300'>
+  <a href='/' class='flex items-center justify-center gap-2 p-2'>
+    <figure class='rounded-full size-9 flex items-center justify-center'>
+      <Icon name={icono} class='size-7' />
+    </figure>
+    <h4 class='relative rounded-full w-full text-sm font-medium flex flex-1'>{titulo}</h4>
+  </a>
+</li>

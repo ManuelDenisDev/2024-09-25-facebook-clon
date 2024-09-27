@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets'
+
+const { nombre, categoria, imagen, className } = Astro.props
+---
+
+<li class='flex justify-between p-1 rounded-xl hover:bg-zinc-200 group cursor-pointer transition-colors duration-300'>
+  <a href='/' class='flex items-center justify-center gap-2 p-2'>
+    <figure
+      class='bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-200 via-gray-400 to-gray-600 rounded-full'
+    >
+      <Image src={imagen} alt='Foto de perfil del usuario Manuel Denis' class={`${className} size-9 rounded-full`} />
+    </figure>
+    <div>
+      <h4 class='relative rounded-full w-full text-sm font-medium flex flex-1'>{nombre}</h4>
+      <p class='text-xs'>{categoria}</p>
+    </div>
+  </a>
+</li>

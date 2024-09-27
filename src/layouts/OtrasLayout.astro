@@ -1,0 +1,69 @@
+---
+// Supports weights 100-900
+import '@fontsource-variable/noto-sans-jp'
+
+import { ViewTransitions } from 'astro:transitions'
+
+import Header from '@components/layouts/Header.astro'
+import SidebarMenu from '@components/SidebarMenu.astro'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang='es'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='description' content='Astro description' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body
+    class='bg-zinc-100 scrollbar scrollbar-w-3 scrollbar-thumb-rounded-[0.25rem] scrollbar-track-slate-200 scrollbar-thumb-gray-400'
+  >
+    <Header />
+    <aside
+      id='sidebar'
+      aria-label='Sidebar'
+      class='fixed hidden top-0 left-0 z-20 flex-col flex-shrink-0 w-52 xl:w-80 h-full pt-10 duration-75 lg:flex transition-width'
+    >
+      <div class='relative flex flex-col flex-1 min-h-0 pt-0 '>
+        <SidebarMenu />
+      </div>
+    </aside>
+
+    <main class='flex flex-col w-full overflow-x-hidden overflow-y-auto mb-14 pt-10 ml-40'>
+      <slot />
+    </main>
+  </body>
+</html>
+<style is:global>
+  body {
+    font-family: 'Noto Sans JP Variable', sans-serif;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(120deg, #96f0f0 14%, #2563eb 64%);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(13deg, #96f0f0 14%, #2563eb 64%);
+  }
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: inset 7px 10px 12px #f0f0f0;
+  }
+</style>
+
+<!-- blue-600 zinc-100 zinc-200 zinc-950 rose-600 green-500 amber-400 -->

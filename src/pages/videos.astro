@@ -1,0 +1,47 @@
+---
+import VideosFeedPost from '@components/VideosFeedPost.astro'
+import OtrasLayout from '@layouts/OtrasLayout.astro'
+import { getPersonajesDBZ } from '@services/personajesDBZ'
+import { getPlanetasDBZ } from '@services/planetasDBZ'
+
+const personajes = await getPersonajesDBZ()
+
+const planetas = await getPlanetasDBZ()
+
+const gokuSSJ = '/videos/01.mp4'
+const gokuAtaqueDragon = '/videos/02.mp4'
+
+const tagsGokuSSJ = ['#krillin', '#transformacion', '#namek', '#goku', '#freezer']
+const tagsGokuAtaqueDragon = ['#goku', '#hildegarn ', '#ataqueDragon', '#guerrerosZ', 'superSaiyaJin3']
+---
+
+<OtrasLayout title='Video - Clone de Facebook realizado con Astro.builds por Manuel Denis.'>
+  <seccion class='mt-8'>
+    {
+      personajes && personajes.length > 0 && planetas && planetas.length > 0 && (
+        <VideosFeedPost
+          transition:persist
+          name={personajes[10].name}
+          planets={planetas[0].name}
+          image={personajes[10].image}
+          race={personajes[10].race}
+          affiliation={personajes[10].affiliation}
+          tags={tagsGokuSSJ}
+          videoFeed={gokuSSJ}
+          publicacion='Momento iconico de la saga cuando Freezer mata a Krillin a sangre fria y Goku lleno de rabia se transforma en Super Saiyan por primera vez. 🔥'
+        />
+        <VideosFeedPost
+          transition:persist
+          name={personajes[0].name}
+          planets={planetas[1].name}
+          image={personajes[0].image}
+          race={personajes[0].race}
+          affiliation={personajes[0].affiliation}
+          tags={tagsGokuAtaqueDragon}
+          videoFeed={gokuAtaqueDragon}
+          publicacion='Goku se transforma en Super Saiyan 3 para enfrentar a Hildegarn, un monstruo que amenaza con destruir la tierra. 🔥'
+        />
+      )
+    }
+  </seccion>
+</OtrasLayout>

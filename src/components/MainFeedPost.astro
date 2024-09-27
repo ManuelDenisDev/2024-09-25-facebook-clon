@@ -1,0 +1,86 @@
+---
+import { Icon } from 'astro-icon/components'
+import Separador from './shared/Separador.astro'
+import FooterButtonFeed from './shared/FooterButtonFeed.astro'
+
+const { name, planets, image, race, affiliation, imageFeed, tags, publicacion } = Astro.props
+
+const raceColors = {
+  Human: 'bg-gradient-to-r from-sky-400 to-cyan-300',
+  Saiyan: 'bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-500',
+  Namekian: 'bg-gradient-to-r from-green-200 via-green-400 to-purple-700',
+  Majin: 'bg-gradient-to-r from-pink-400 to-pink-600',
+  'Frieza Race': 'bg-gradient-to-r from-purple-200 via-purple-400 to-purple-800',
+  Android: 'bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-sky-400 to-indigo-900',
+  'Jiren Race': 'bg-gradient-to-tr from-violet-500 to-orange-300',
+  'God Angel': 'bg-teal-500',
+  Evil: 'bg-black',
+  Nucleico:
+    'bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-violet-600 to-sky-900',
+  'Nucleico benigno':
+    'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-300 via-fuchsia-600 to-orange-600',
+  Unknown: 'bg-gradient-to-r from-teal-200 to-lime-200'
+}
+---
+
+<article class='bg-white rounded-xl py-2 px-4 flex mx-auto max-w-xl flex-col gap-2 mt-4'>
+  <header class='flex items-center mt-2 justify-between gap-2'>
+    <a href='/' class='bg-zinc-200 rounded-full flex items-center justify-center'>
+      <img
+        src={image}
+        alt='Foto de perfil del usuario Manuel Denis'
+        class={`w-full aspect-square size-10 rounded-full object-cover object-top ${raceColors[race] || 'bg-gradient-to-b from-gray-900 to-gray-600 '} `}
+      />
+    </a>
+    <div class='relative flex items-start flex-col flex-1'>
+      <h5 class='text-sm'>
+        <strong class='text-zinc-900'>{name}</strong> está en <strong class='text-zinc-900'>{planets}</strong>
+      </h5>
+      <p class='text-xs'>44 minutos · {affiliation} · 🌍</p>
+    </div>
+  </header>
+  <main class='flex flex-col gap-2'>
+    <p>{publicacion}</p>
+    <ul class='flex gap-2 font-light'>
+      {tags.map((tag: string, index: number) => <li>{tag}</li>)}
+    </ul>
+    <figure class='rounded-xl'>
+      <img src={imageFeed} alt='Post 01' class='w-full object-cover aspect-square rounded-xl' />
+    </figure>
+    <footer>
+      <div class='flex justify-between items-center text-sm font-light gap-2'>
+        <div class='flex'>
+          <span class='size-8 flex items-center justify-center rounded-full z-[6] bg-white'
+            ><strong class='text-xl'>👍🏻</strong></span
+          >
+          <span class='size-8 flex items-center justify-center rounded-full z-[5] -ml-3 bg-white'
+            ><strong class='text-xl'>❤️</strong></span
+          >
+          <span class='size-8 flex items-center justify-center rounded-full z-[4] -ml-3 bg-white'
+            ><strong class='text-xl'>😍</strong></span
+          >
+          <span class='size-8 flex items-center justify-center rounded-full z-[3] -ml-3 bg-white'
+            ><strong class='text-xl'>😂</strong></span
+          >
+          <span class='size-8 flex items-center justify-center rounded-full z-[2] -ml-3 bg-white'
+            ><strong class='text-xl'>😮</strong></span
+          >
+          <span class='size-8 flex items-center justify-center rounded-full z-[1] -ml-3 bg-white'
+            ><strong class='text-xl'>😭</strong></span
+          >
+          <span class='size-8 flex items-center justify-center rounded-full z-[0] -ml-3 bg-white'
+            ><strong class='text-xl'>😡</strong></span
+          >
+        </div>
+        <span class='flex-1'>Cell, Piccolo, Goku y 24 personas más</span>
+        <span>1 comentario</span>
+      </div>
+      <Separador />
+      <div class='w-[546px] flex font-semibold'>
+        <FooterButtonFeed icon='megusta-outline' texto='Me gusta' />
+        <FooterButtonFeed icon='comentar-outline' texto='Comentar' />
+        <FooterButtonFeed icon='compartir-outline' texto='Compartir' />
+      </div>
+    </footer>
+  </main>
+</article>

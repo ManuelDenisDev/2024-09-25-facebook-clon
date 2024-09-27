@@ -1,0 +1,75 @@
+---
+import FotoPerfil from '@components/shared/FotoPerfil.astro'
+import MainHeaderButton from '@components/MainHeaderButton.astro'
+import Separador from '@components/shared/Separador.astro'
+
+const dataHeaderMainButton = [
+  {
+    icon: 'camera',
+    texto: 'Video en vivo',
+    classNameButton: 'flex',
+    classNameIcon: 'text-rose-600'
+  },
+  {
+    icon: 'images-outline',
+    texto: 'Foto/Video',
+    classNameButton: 'flex',
+    classNameIcon: 'text-green-500'
+  },
+  {
+    icon: 'smile-outline',
+    texto: 'Sentimiento/Actividad',
+    classNameButton: 'hidden md:flex',
+    classNameIcon: 'text-amber-400 '
+  }
+]
+
+const personajes = await getPersonajesDBZ()
+
+const raceColors = {
+  Human: 'bg-gradient-to-r from-sky-400 to-cyan-300',
+  Saiyan: 'bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-500',
+  Namekian: 'bg-gradient-to-r from-green-200 via-green-400 to-purple-700',
+  Majin: 'bg-gradient-to-r from-pink-400 to-pink-600',
+  'Frieza Race': 'bg-gradient-to-r from-purple-200 via-purple-400 to-purple-800',
+  Android: 'bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-sky-400 to-indigo-900',
+  'Jiren Race': 'bg-gradient-to-tr from-violet-500 to-orange-300',
+  'God Angel': 'bg-teal-500',
+  Evil: 'bg-black',
+  Nucleico:
+    'bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-violet-600 to-sky-900',
+  'Nucleico benigno':
+    'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-300 via-fuchsia-600 to-orange-600',
+  Unknown: 'bg-gradient-to-r from-teal-200 to-lime-200'
+}
+
+import { getPersonajesDBZ } from '@services/personajesDBZ'
+---
+
+<header class='bg-white rounded-xl py-2 px-4 flex mx-auto max-w-xl flex-col gap-2 mt-8'>
+  <div class='flex items-center mt-2 justify-between gap-2'>
+    <a
+      href='/'
+      class='bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-200 via-gray-400 to-gray-600 rounded-full flex items-center justify-center'
+    >
+      <FotoPerfil className='size-10' />
+    </a>
+    <div class='relative rounded-full shadow-sm flex flex-1'>
+      <input
+        type='text'
+        name='price'
+        id='price'
+        class='block w-full rounded-full border-0 py-1.5 pl-7 pr-20 text-zinc-900 ring-1 ring-inset ring-zinc-100 bg-zinc-100 placeholder:text-zinc-900 focus:ring-1 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 focus:outline-none'
+        placeholder='¿Qué estás pensando, Manuel?'
+      />
+    </div>
+  </div>
+  <Separador />
+  <div class='w-[544px] flex'>
+    {
+      dataHeaderMainButton.map(({ icon, texto, classNameButton, classNameIcon }) => (
+        <MainHeaderButton icon={icon} texto={texto} classNameButton={classNameButton} classNameIcon={classNameIcon} />
+      ))
+    }
+  </div>
+</header>

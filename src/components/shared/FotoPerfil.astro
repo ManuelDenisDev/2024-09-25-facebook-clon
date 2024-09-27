@@ -1,0 +1,9 @@
+---
+import { Image } from 'astro:assets'
+
+import fotoPerfil from '@assets/mandendev-foto-perfil.png'
+
+const { className } = Astro.props
+---
+
+<Image src={fotoPerfil} alt='Foto de perfil del usuario Manuel Denis' class={`${className} rounded-full`} />
