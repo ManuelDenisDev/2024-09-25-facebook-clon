@@ -3,30 +3,18 @@ import FotoPerfil from '@components/shared/FotoPerfil.astro'
 import MainHeaderButton from '@components/MainHeaderButton.astro'
 import Separador from '@components/shared/Separador.astro'
 
-const dataHeaderMainButton = [
-  {
-    icon: 'camera',
-    texto: 'Video en vivo',
-    classNameButton: 'flex',
-    classNameIcon: 'text-rose-600'
-  },
-  {
-    icon: 'images-outline',
-    texto: 'Foto/Video',
-    classNameButton: 'flex',
-    classNameIcon: 'text-green-500'
-  },
-  {
-    icon: 'smile-outline',
-    texto: 'Sentimiento/Actividad',
-    classNameButton: 'hidden md:flex',
-    classNameIcon: 'text-amber-400 '
-  }
-]
+const { data = [], className }: { data?: HeaderMainButton[]; className?: string } = Astro.props
+
+interface HeaderMainButton {
+  icon: string
+  texto: string
+  classNameButton: string
+  classNameIcon: string
+}
 ---
 
-<header class='bg-white rounded-xl py-2 px-4 flex mx-auto max-w-xl flex-col gap-2 mt-8'>
-  <div class='flex items-center mt-2 justify-between gap-2'>
+<header class={`bg-white rounded-xl py-2 px-4 flex mx-auto ${className} w-full flex-col gap-2`}>
+  <div class='flex items-center justify-between gap-2'>
     <a
       href='/'
       class='bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-200 via-gray-400 to-gray-600 rounded-full flex items-center justify-center'
@@ -44,9 +32,9 @@ const dataHeaderMainButton = [
     </div>
   </div>
   <Separador />
-  <div class='w-[484px] sm:w-[482px] lg:w-[544px] flex flex-nowrap'>
+  <div class='flex flex-nowrap'>
     {
-      dataHeaderMainButton.map(({ icon, texto, classNameButton, classNameIcon }) => (
+      data.map(({ icon, texto, classNameButton, classNameIcon }) => (
         <MainHeaderButton icon={icon} texto={texto} classNameButton={classNameButton} classNameIcon={classNameIcon} />
       ))
     }

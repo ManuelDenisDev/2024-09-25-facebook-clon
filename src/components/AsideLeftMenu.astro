@@ -4,6 +4,7 @@ import AsideLeftMenuItemFoto from './AsideLeftMenuItemFoto.astro'
 import AsideLeftMenuItemIcon from './AsideLeftMenuItemIcon.astro'
 import AsideTituloIcono from './shared/AsideTituloIcono.astro'
 import AsideTitulos from './shared/AsideTitulos.astro'
+import MarginTop from './shared/MarginTop.astro'
 import Separador from './shared/Separador.astro'
 
 const dataAsideLeftMenu = [
@@ -36,9 +37,11 @@ const dataAsideLeftFooter = [
 ---
 
 <div
-  class='flex flex-col flex-1 pt-5 pb-28 overflow-y-auto overflow-x-hidden scrollbar scrollbar-w-2 scrollbar-thumb-rounded-[0.1667rem] scrollbar-thumb-slate-200 scrollbar-track-gray-400 dark:scrollbar-thumb-slate-900 dark:scrollbar-track-gray-800'
+  class='flex flex-col px-2 flex-1  overflow-y-auto overflow-x-hidden scrollbar scrollbar-w-2 scrollbar-thumb-rounded-[0.1667rem] scrollbar-thumb-slate-200 scrollbar-track-gray-400 '
 >
-  <ul class='flex flex-col w-full mt-2'>
+<MarginTop />
+
+  <ul class='flex flex-col w-full'>
     <AsideLeftMenuItemFoto />
 
     {dataAsideLeftMenu.map(({ icono, titulo }) => <AsideLeftMenuItemIcon icono={icono} titulo={titulo} />)}

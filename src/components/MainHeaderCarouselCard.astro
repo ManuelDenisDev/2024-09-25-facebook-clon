@@ -1,5 +1,4 @@
 ---
-
 interface AstroProps {
   id: string
   name: string
@@ -27,25 +26,27 @@ const raceColors = {
 }
 ---
 
-<a href={`personajes/${id}`} class='flex flex-shrink-0 relative w-auto group rounded-xl'>
-  <figure
-    class={`overflow-hidden relative w-28 rounded-lg ${raceColors[race] || 'bg-gradient-to-b from-gray-900 to-gray-600 '}`}
-  >
-    <img
-      src={image}
-      alt={race}
-      class='relative aspect-[9/16] object-contain rounded-xl transition-transform duration-500 group-hover:scale-110'
-      transition:name={`image-${id}`}
-    />
-  </figure>
-  <div class='hover:bg-zinc-800/30 bg-zinc-800/10 transition-all duration-300 absolute w-full h-full p-2 rounded-xl'>
-    <img
-      src={image}
-      alt={name}
-      class={`w-10 h-10 rounded-full object-cover object-top border-2 border-white dark:border-zinc-900 ${raceColors[race] || 'bg-gradient-to-b from-gray-900 to-gray-600 '}`}
-    />
-    <div class='flex h-full items-end'>
-      <h3 class='text-sm text-white mb-10 shadow-2xl' transition:name={`name-${id}`}>{name}</h3>
+<a href={`personajes/${id}`} class='embla__slide flex flex-shrink-0 relative w-auto group rounded-xl'>
+  <div class='embla__slide__number'>
+    <figure
+      class={`overflow-hidden relative w-28 rounded-lg ${raceColors[race] || 'bg-gradient-to-b from-gray-900 to-gray-600 '}`}
+    >
+      <img
+        src={image}
+        alt={race}
+        class='relative aspect-[9/16] object-contain rounded-xl transition-transform duration-500 group-hover:scale-110'
+        transition:name={`image-${id}`}
+      />
+    </figure>
+    <div class='hover:bg-zinc-800/30 bg-zinc-800/10 transition-all duration-300 absolute w-full h-full p-2 rounded-xl'>
+      <img
+        src={image}
+        alt={name}
+        class={`w-10 h-10 rounded-full object-cover object-top border-2 border-white dark:border-zinc-900 ${raceColors[race] || 'bg-gradient-to-b from-gray-900 to-gray-600 '}`}
+      />
+      <div class='flex h-full items-end'>
+        <h3 class='text-sm text-white mb-10 shadow-2xl' transition:name={`name-${id}`}>{name}</h3>
+      </div>
     </div>
   </div>
 </a>

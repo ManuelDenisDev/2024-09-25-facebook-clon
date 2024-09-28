@@ -1,0 +1,40 @@
+---
+import FooterButtonFeed from './FooterButtonFeed.astro'
+import Separador from './Separador.astro'
+---
+
+<footer class='mx-4'>
+  <div class='flex flow-row justify-between items-center text-sm font-light gap-x-2'>
+    <div class='hidden lg:flex'>
+      <span class='size-8 flex items-center justify-center rounded-full z-[6] bg-white'
+        ><strong class='text-xl'>👍🏻</strong></span
+      >
+      <span class='size-8 flex items-center justify-center rounded-full z-[5] -ml-3 bg-white'
+        ><strong class='text-xl'>❤️</strong></span
+      >
+      <span class='size-8 flex items-center justify-center rounded-full z-[4] -ml-3 bg-white'
+        ><strong class='text-xl'>😍</strong></span
+      >
+      <span class='size-8 flex items-center justify-center rounded-full z-[3] -ml-3 bg-white'
+        ><strong class='text-xl'>😂</strong></span
+      >
+      <span class='size-8 flex items-center justify-center rounded-full z-[2] -ml-3 bg-white'
+        ><strong class='text-xl'>😮</strong></span
+      >
+      <span class='size-8 flex items-center justify-center rounded-full z-[1] -ml-3 bg-white'
+        ><strong class='text-xl'>😭</strong></span
+      >
+      <span class='size-8 flex items-center justify-center rounded-full z-[0] -ml-3 bg-white'
+        ><strong class='text-xl'>😡</strong></span
+      >
+    </div>
+    <span class='flex-1'>Cell, Piccolo, Goku y 24 personas más</span>
+    <span>1 comentario</span>
+  </div>
+  <Separador />
+  <div class='flex items-center justify-center font-semibold my-1'>
+    <FooterButtonFeed icon='megusta-outline' texto='Me gusta' />
+    <FooterButtonFeed icon='comentar-outline' texto='Comentar' />
+    <FooterButtonFeed icon='compartir-outline' texto='Compartir' />
+  </div>
+</footer>

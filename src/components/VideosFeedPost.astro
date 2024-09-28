@@ -1,4 +1,6 @@
 ---
+import HeaderPost from './shared/HeaderPost.astro'
+
 interface AstroProps {
   name: string
   planets: string
@@ -30,25 +32,11 @@ const raceColors = {
 }
 ---
 
-<article class='bg-white rounded-xl py-2 px-4 flex mx-auto lg:max-w-3xl xl:max-w-4xl flex-col gap-2 mt-4'>
-  <header class='flex items-center mt-2 justify-between gap-2'>
-    <a href='/' class='bg-zinc-200 rounded-full flex items-center justify-center'>
-      <img
-        src={image}
-        alt='Foto de perfil del usuario Manuel Denis'
-        class={`w-full aspect-square size-10 rounded-full object-cover object-top ${raceColors[race] || 'bg-gradient-to-b from-gray-900 to-gray-600 '} `}
-      />
-    </a>
-    <div class='relative rounded-full shadow-sm flex items-start flex-col flex-1'>
-      <h5 class='text-sm'>
-        <strong class='text-zinc-900'>{name}</strong> está en <strong class='text-zinc-900'>{planets}</strong>
-      </h5>
-      <p class='text-xs'>44 minutos · {affiliation} · 🌍</p>
-    </div>
-  </header>
+<article class='bg-white rounded-xl flex mx-auto lg:max-w-3xl xl:max-w-4xl w-full flex-col gap-2'>
+  <HeaderPost name={name} planets={planets} image={image} race={race} affiliation={affiliation} />
   <main class='flex flex-col gap-2'>
-    <p>{publicacion}</p>
-    <ul class='flex flex-wrap gap-2 font-light'>
+    <p class='mx-4'>{publicacion}</p>
+    <ul class='flex flex-wrap gap-2 font-light mx-4'>
       {tags.map((tag: string) => <li>{tag}</li>)}
     </ul>
     <video width='100%' controls muted autoplay transition:persist>
@@ -56,34 +44,32 @@ const raceColors = {
       Tu navegador no soporta HTML5 video.
     </video>
 
-    <footer>
-      <div class='flex justify-between items-center text-sm font-light gap-2'>
-        <div class='flex'>
-          <span class='size-8 flex items-center justify-center rounded-full z-[6] bg-white'
-            ><strong class='text-xl'>👍🏻</strong></span
-          >
-          <span class='size-8 flex items-center justify-center rounded-full z-[5] -ml-3 bg-white'
-            ><strong class='text-xl'>❤️</strong></span
-          >
-          <span class='size-8 flex items-center justify-center rounded-full z-[4] -ml-3 bg-white'
-            ><strong class='text-xl'>😍</strong></span
-          >
-          <span class='size-8 flex items-center justify-center rounded-full z-[3] -ml-3 bg-white'
-            ><strong class='text-xl'>😂</strong></span
-          >
-          <span class='size-8 flex items-center justify-center rounded-full z-[2] -ml-3 bg-white'
-            ><strong class='text-xl'>😮</strong></span
-          >
-          <span class='size-8 flex items-center justify-center rounded-full z-[1] -ml-3 bg-white'
-            ><strong class='text-xl'>😭</strong></span
-          >
-          <span class='size-8 flex items-center justify-center rounded-full z-[0] -ml-3 bg-white'
-            ><strong class='text-xl'>😡</strong></span
-          >
-        </div>
-        <span class='flex-1'>Cell, Piccolo, Goku y 24 personas más</span>
-        <span>1 comentario</span>
+    <footer class='flex justify-between items-center text-sm font-light gap-2 mx-4 pb-4'>
+      <div class='flex'>
+        <span class='size-8 flex items-center justify-center rounded-full z-[6] bg-white'
+          ><strong class='text-xl'>👍🏻</strong></span
+        >
+        <span class='size-8 flex items-center justify-center rounded-full z-[5] -ml-3 bg-white'
+          ><strong class='text-xl'>❤️</strong></span
+        >
+        <span class='size-8 flex items-center justify-center rounded-full z-[4] -ml-3 bg-white'
+          ><strong class='text-xl'>😍</strong></span
+        >
+        <span class='size-8 flex items-center justify-center rounded-full z-[3] -ml-3 bg-white'
+          ><strong class='text-xl'>😂</strong></span
+        >
+        <span class='size-8 flex items-center justify-center rounded-full z-[2] -ml-3 bg-white'
+          ><strong class='text-xl'>😮</strong></span
+        >
+        <span class='size-8 flex items-center justify-center rounded-full z-[1] -ml-3 bg-white'
+          ><strong class='text-xl'>😭</strong></span
+        >
+        <span class='size-8 flex items-center justify-center rounded-full z-[0] -ml-3 bg-white'
+          ><strong class='text-xl'>😡</strong></span
+        >
       </div>
+      <span class='flex-1'>Cell, Piccolo, Goku y 24 personas más</span>
+      <span>1 comentario</span>
     </footer>
   </main>
 </article>

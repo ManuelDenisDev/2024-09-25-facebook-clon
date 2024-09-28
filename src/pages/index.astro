@@ -5,10 +5,11 @@ import MainHeaderCarousel from '@components/MainHeaderCarousel.astro'
 import MainFeedPost from '@components/MainFeedPost.astro'
 import { getPersonajesDBZ } from '@services/personajesDBZ'
 import { getPlanetasDBZ } from '@services/planetasDBZ'
+import MarginTop from '@components/shared/MarginTop.astro'
 
 const personajes = await getPersonajesDBZ()
 
-const planetas = await getPlanetasDBZ()
+const planetas = await getPlanetasDBZ({ id: 'someId' })
 
 const planetaTierraKameHouse01 = '/01.webp'
 const planetaNamek01 = '/planetas/namek/01.jpg'
@@ -17,45 +18,72 @@ const planetaVegeta01 = '/planetas/vegeta/01.webp'
 const tagsKrillin = ['#krillin', '#humano', '#tierra', '#kameHouse', '#guerrerosZ']
 const tagsPiccolo = ['#piccolo', '#namekiano', '#namek', '#guerrerosZ']
 const tagsVegeta = ['#vegeta', '#saiyan', '#planetaVegeta', '#guerrerosZ']
+
+const dataHeaderMainButton = [
+  {
+    icon: 'camera',
+    texto: 'Video en vivo',
+    classNameButton: 'flex',
+    classNameIcon: 'text-rose-600'
+  },
+  {
+    icon: 'images-outline',
+    texto: 'Foto/Video',
+    classNameButton: 'flex',
+    classNameIcon: 'text-green-500'
+  },
+  {
+    icon: 'smile-outline',
+    texto: 'Sentimiento/Actividad',
+    classNameButton: 'hidden md:flex',
+    classNameIcon: 'text-amber-400 '
+  }
+]
 ---
 
 <MainLayout title='Madebook - Clone de Facebook realizado con Astro.builds por Manuel Denis.'>
-  <MainHeader />
-  <MainHeaderCarousel />
-  {
-    personajes && personajes.length > 0 && planetas && planetas.length > 0 && (
-      <MainFeedPost
-        name={personajes[10].name}
-        planets={planetas[1].name}
-        image={personajes[10].image}
-        race={personajes[10].race}
-        affiliation={personajes[10].affiliation}
-        imageFeed={planetaTierraKameHouse01}
-        tags={tagsKrillin}
-        publicacion="¡¿Es que no sabes que aquellos que se toman las artes marciales seriamente se rapan la cabeza!? 👨🏻‍🦲"
-      />
-      <MainFeedPost
-        name={personajes[2].name}
-        planets={planetas[2].name}
-        image={personajes[2].image}
-        race={personajes[2].race}
-        affiliation={personajes[2].affiliation}
-        imageFeed={planetaNamek01}
-        tags={tagsPiccolo}
-        publicacion="Gohan, me has enseñado que el poder no es nada si no lo guía el amor. 🩷"
-      />
-      <MainFeedPost
-        name={personajes[1].name}
-        planets={planetas[0].name}
-        image={personajes[1].image}
-        race={personajes[1].race}
-        affiliation={personajes[1].affiliation}
-        imageFeed={planetaVegeta01}
-        tags={tagsVegeta}
-        publicacion="Debes sentirte afortunado, porque un guerrero de clase baja tendrá el honor de jugar un poco con el mejor guerrero. 🤴🏻"
-      />
-    )
+  <div class="flex flex-col gap-4 first:-translate-y-2">
+    <MarginTop />
+    <MainHeader data={dataHeaderMainButton} className="max-w-xl" />
+    <MainHeaderCarousel />
+    <seccion class='flex flex-col gap-4'>
+      
+      {
+        personajes && personajes.length > 0 && planetas && planetas.length > 0 && (
+          <MainFeedPost
+          name={personajes[10].name}
+          planets={planetas[1].name}
+          image={personajes[10].image}
+          race={personajes[10].race}
+          affiliation={personajes[10].affiliation}
+          imageFeed={planetaTierraKameHouse01}
+          tags={tagsKrillin}
+          publicacion="¡¿Es que no sabes que aquellos que se toman las artes marciales seriamente se rapan la cabeza!? 👨🏻‍🦲"
+          />
+          <MainFeedPost
+          name={personajes[2].name}
+          planets={planetas[2].name}
+          image={personajes[2].image}
+          race={personajes[2].race}
+          affiliation={personajes[2].affiliation}
+          imageFeed={planetaNamek01}
+          tags={tagsPiccolo}
+          publicacion="Gohan, me has enseñado que el poder no es nada si no lo guía el amor. 🩷"
+          />
+          <MainFeedPost
+          name={personajes[1].name}
+          planets={planetas[0].name}
+          image={personajes[1].image}
+          race={personajes[1].race}
+          affiliation={personajes[1].affiliation}
+          imageFeed={planetaVegeta01}
+          tags={tagsVegeta}
+          publicacion="Debes sentirte afortunado, porque un guerrero de clase baja tendrá el honor de jugar un poco con el mejor guerrero. 🤴🏻"
+          />
+        )
   }
+  </seccion>
+</div>
 </MainLayout>
 
 <style></style>

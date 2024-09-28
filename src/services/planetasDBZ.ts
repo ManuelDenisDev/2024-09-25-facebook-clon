@@ -3,7 +3,7 @@ import type { APIDragonBallPlanetasResponse } from "../types/APIDragonBallPlanet
 
 const baseURL = "https://dragonball-api.com/api/planets";
 
-export const getPlanetasDBZ = async () => {
+export const getPlanetasDBZ = async (p0: { id: string; }) => {
   try {
     const res = await fetch(`${baseURL}?limit=20`, {
       headers: {

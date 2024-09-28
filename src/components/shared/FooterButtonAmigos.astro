@@ -1,0 +1,10 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const { icon, texto, classNameButton, classNameIcon } = Astro.props
+---
+
+<button class:list={['rounded-md w-full h-8 flex text-xs items-center justify-center', classNameButton]}>
+  <Icon name={icon} class:list={['size-4', classNameIcon]}/>
+  {texto}
+</button>

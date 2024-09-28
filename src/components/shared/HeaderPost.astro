@@ -1,21 +1,13 @@
 ---
-import Separador from './shared/Separador.astro'
-import FooterButtonFeed from './shared/FooterButtonFeed.astro'
-import HeaderPost from './shared/HeaderPost.astro'
-import FooterPost from './shared/FooterPost.astro'
-
 interface AstroProps {
   name: string
   planets: string
   image: string
   race: keyof typeof raceColors
   affiliation: string
-  imageFeed: string
-  tags: string[]
-  publicacion: string
 }
 
-const { name, planets, image, race, affiliation, imageFeed, tags, publicacion } = Astro.props as AstroProps
+const { name, planets, image, race, affiliation } = Astro.props as AstroProps
 
 const raceColors = {
   Human: 'bg-gradient-to-r from-sky-400 to-cyan-300',
@@ -35,17 +27,18 @@ const raceColors = {
 }
 ---
 
-<article class='bg-white rounded-xl flex mx-auto max-w-xl flex-col gap-4'>
-  <HeaderPost name={name} planets={planets} image={image} race={race} affiliation={affiliation} />
-  <main class='flex flex-col gap-2 mx-4 text-sm'>
-    <p>{publicacion}</p>
-    <ul class='flex flex-wrap gap-2 font-light'>
-      {tags.map((tag: string) => <li>{tag}</li>)}
-    </ul>
-  </main>
-  <figure class=''>
-    <img src={imageFeed} alt='Post 01' class='w-full object-cover aspect-square' />
-  </figure>
-  <FooterPost />
-  
-</article>
+<header class='flex items-center px-4 pt-4 justify-between gap-2'>
+  <a href='/' class='bg-zinc-200 rounded-full flex items-center justify-center'>
+    <img
+      src={image}
+      alt='Foto de perfil del usuario Manuel Denis'
+      class={`w-full aspect-square size-10 rounded-full object-cover object-top ${raceColors[race] || 'bg-gradient-to-b from-gray-900 to-gray-600 '} `}
+    />
+  </a>
+  <div class='relative flex items-start flex-col flex-1'>
+    <h5 class='text-sm'>
+      <strong class='text-zinc-900'>{name}</strong> está en <strong class='text-zinc-900'>{planets}</strong>
+    </h5>
+    <p class='text-xs'>44 minutos · {affiliation} · 🌍</p>
+  </div>
+</header>

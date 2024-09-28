@@ -35,3 +35,19 @@ export const getPersonajesDBZById = async ({ id }: { id: string }) => {
     console.error(error);
   }
 };
+
+export const getPersonajesDBZByName = async ({ name }: { name: string }) => {
+  try {
+    const res = await fetch(`${baseURL}/${name}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const personaje = (await res.json()) as Item as Item;
+
+    return personaje;
+  } catch (error) {
+    console.error(error);
+  }
+};

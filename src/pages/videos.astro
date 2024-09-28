@@ -1,4 +1,5 @@
 ---
+import MarginTop from '@components/shared/MarginTop.astro'
 import VideosFeedPost from '@components/VideosFeedPost.astro'
 import OtrasLayout from '@layouts/OtrasLayout.astro'
 import { getPersonajesDBZ } from '@services/personajesDBZ'
@@ -6,7 +7,7 @@ import { getPlanetasDBZ } from '@services/planetasDBZ'
 
 const personajes = await getPersonajesDBZ()
 
-const planetas = await getPlanetasDBZ()
+const planetas = await getPlanetasDBZ({ id: 'someId' })
 
 const gokuSSJ = '/videos/01.mp4'
 const gokuAtaqueDragon = '/videos/02.mp4'
@@ -16,7 +17,8 @@ const tagsGokuAtaqueDragon = ['#goku', '#hildegarn ', '#ataqueDragon', '#guerrer
 ---
 
 <OtrasLayout title='Video - Clone de Facebook realizado con Astro.builds por Manuel Denis.'>
-  <seccion class='mt-4'>
+  <MarginTop />
+  <seccion class='flex flex-col gap-4'>
     {
       personajes && personajes.length > 0 && planetas && planetas.length > 0 && (
         <VideosFeedPost

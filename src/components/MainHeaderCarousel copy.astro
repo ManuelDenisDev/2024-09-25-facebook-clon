@@ -1,0 +1,58 @@
+---
+import { Icon } from 'astro-icon/components'
+import MainHeaderCarouselCard from './MainHeaderCarouselCard.astro'
+
+import { getPersonajesDBZ } from '@services/personajesDBZ'
+
+const personajes = await getPersonajesDBZ()
+---
+
+<div class='flex items-center justify-center w-full mt-4 max-w-xl mx-auto'>
+  <div class='w-full relative flex items-center justify-center'>
+    <div>
+      <button
+        aria-label='slide backward'
+        class='absolute bg-white size-10 flex items-center justify-center rounded-full -translate-y-1/2 z-30 left-0 ml-6 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer'
+        id='prev'
+      >
+        <Icon name='chevron-down' class='rotate-90 text-zinc-600' />
+      </button>
+      <button
+        aria-label='slide forward'
+        class='absolute bg-white size-10 flex items-center justify-center rounded-full -translate-y-1/2 z-30 right-0 mr-6 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400'
+        id='next'
+      >
+        <Icon name='chevron-down' class='-rotate-90 text-zinc-600' />
+      </button>
+    </div>
+    <div class='w-full h-full mx-auto overflow-x-hidden overflow-y-hidden relative'>
+      <div id='slider' class='h-full flex gap-2 rounded-xl items-center justify-start transition ease-out duration-700'>
+        {
+          personajes?.map(({ name, image, race, id }) => (
+            <MainHeaderCarouselCard name={name} image={image} race={race} id={id} />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let defaultTransform = 0
+  function goNext() {
+    defaultTransform = defaultTransform - 398
+    var slider = document.getElementById('slider')
+    if (slider && Math.abs(defaultTransform) >= slider.scrollWidth / 1.7) defaultTransform = 0
+    if (slider) {
+      slider.style.transform = 'translateX(' + defaultTransform + 'px)'
+    }
+  }
+  document.getElementById('next')?.addEventListener('click', goNext)
+  function goPrev() {
+    var slider = document.getElementById('slider')
+    if (Math.abs(defaultTransform) === 0) defaultTransform = 0
+    else defaultTransform = defaultTransform + 398
+    slider!.style.transform = 'translateX(' + defaultTransform + 'px)'
+  }
+  document.getElementById('prev')?.addEventListener('click', goPrev)
+</script>

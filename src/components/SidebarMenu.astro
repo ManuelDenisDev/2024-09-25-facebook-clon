@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components'
 import AsideLeftMenuItemIcon from './AsideLeftMenuItemIcon.astro'
+import MarginTop from './shared/MarginTop.astro'
 
 const dataSidebarVideoTitulos = [{ titulo: 'Videos', icono: 'video-outline' }]
 
@@ -15,8 +16,9 @@ const dataSidebarVideoLinks = [
 ---
 
 <div
-  class='flex flex-col flex-1 pt-8 px-2 pb-28 overflow-y-auto overflow-x-hidden scrollbar scrollbar-w-2 scrollbar-thumb-rounded-[0.1667rem] scrollbar-thumb-slate-200 scrollbar-track-gray-400 dark:scrollbar-thumb-slate-900 dark:scrollbar-track-gray-800 backdrop-blur-sm shadow-md bg-white z-20'
+  class='flex flex-col flex-1 px-2 overflow-y-auto overflow-x-hidden scrollbar scrollbar-w-2 scrollbar-thumb-rounded-[0.1667rem] scrollbar-thumb-slate-200 scrollbar-track-gray-400 dark:scrollbar-thumb-slate-900 dark:scrollbar-track-gray-800 backdrop-blur-sm shadow-md bg-white z-20'
 >
+  <MarginTop />
   <header class='flex justify-between px-2 mx-2 items-center'>
     <h3 class='text-xl font-extrabold'>{dataSidebarVideoTitulos[0].titulo}</h3>
     <Icon name={dataSidebarVideoTitulos[0].icono} class='size-6 text-zinc-900' />
