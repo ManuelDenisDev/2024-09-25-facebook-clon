@@ -1,9 +1,19 @@
 ---
-import { Icon } from 'astro-icon/components'
 import Separador from './shared/Separador.astro'
 import FooterButtonFeed from './shared/FooterButtonFeed.astro'
 
-const { name, planets, image, race, affiliation, imageFeed, tags, publicacion } = Astro.props
+interface AstroProps {
+  name: string
+  planets: string
+  image: string
+  race: keyof typeof raceColors
+  affiliation: string
+  imageFeed: string
+  tags: string[]
+  publicacion: string
+}
+
+const { name, planets, image, race, affiliation, imageFeed, tags, publicacion } = Astro.props as AstroProps
 
 const raceColors = {
   Human: 'bg-gradient-to-r from-sky-400 to-cyan-300',
@@ -42,7 +52,7 @@ const raceColors = {
   <main class='flex flex-col gap-2'>
     <p>{publicacion}</p>
     <ul class='flex gap-2 font-light'>
-      {tags.map((tag: string, index: number) => <li>{tag}</li>)}
+      {tags.map((tag: string) => <li>{tag}</li>)}
     </ul>
     <figure class='rounded-xl'>
       <img src={imageFeed} alt='Post 01' class='w-full object-cover aspect-square rounded-xl' />

@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
+    "@astrojs/netlify": "^5.5.3",
     "@astrojs/tailwind": "^5.1.1",
     "@fontsource-variable/noto-sans-jp": "^5.1.0",
+    "@midudev/tailwind-animations": "^0.1.0",
     "astro": "^4.15.9",
     "astro-icon": "^1.1.1",
     "flowbite": "^2.5.1",

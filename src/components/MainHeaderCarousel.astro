@@ -28,7 +28,7 @@ const personajes = await getPersonajesDBZ()
     <div class='w-full h-full mx-auto overflow-x-hidden overflow-y-hidden relative'>
       <div id='slider' class='h-full flex gap-2 rounded-xl items-center justify-start transition ease-out duration-700'>
         {
-          personajes.map(({ name, image, race, id }) => (
+          personajes?.map(({ name, image, race, id }) => (
             <MainHeaderCarouselCard name={name} image={image} race={race} id={id} />
           ))
         }
@@ -52,7 +52,7 @@ const personajes = await getPersonajesDBZ()
     var slider = document.getElementById('slider')
     if (Math.abs(defaultTransform) === 0) defaultTransform = 0
     else defaultTransform = defaultTransform + 398
-    slider.style.transform = 'translateX(' + defaultTransform + 'px)'
+    slider!.style.transform = 'translateX(' + defaultTransform + 'px)'
   }
   document.getElementById('prev')?.addEventListener('click', goPrev)
 </script>

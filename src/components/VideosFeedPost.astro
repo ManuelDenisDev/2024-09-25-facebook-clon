@@ -1,8 +1,16 @@
 ---
-import { Icon } from 'astro-icon/components'
-import Separador from './shared/Separador.astro'
+interface AstroProps {
+  name: string
+  planets: string
+  image: string
+  race: keyof typeof raceColors
+  affiliation: string
+  tags: string[]
+  publicacion: string
+  videoFeed: string
+}
 
-const { name, planets, image, race, affiliation, tags, publicacion, videoFeed } = Astro.props
+const { name, planets, image, race, affiliation, tags, publicacion, videoFeed } = Astro.props as AstroProps
 
 const raceColors = {
   Human: 'bg-gradient-to-r from-sky-400 to-cyan-300',
@@ -41,7 +49,7 @@ const raceColors = {
   <main class='flex flex-col gap-2'>
     <p>{publicacion}</p>
     <ul class='flex gap-2 font-light'>
-      {tags.map((tag: string, index: number) => <li>{tag}</li>)}
+      {tags.map((tag: string) => <li>{tag}</li>)}
     </ul>
     <video width='100%' controls muted autoplay transition:persist>
       <source src={videoFeed} type='video/mp4' />

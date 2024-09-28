@@ -24,7 +24,14 @@ if (id) {
 //   }))
 // }
 
-const { name, race, image } = personaje || {}
+interface AstroProps {
+  id: string
+  name: string
+  race: keyof typeof raceColors
+  image: string
+}
+
+const { name, race, image } = personaje as unknown as AstroProps
 
 const raceColors = {
   Human: 'bg-gradient-to-r from-sky-400 to-cyan-300',
@@ -60,7 +67,9 @@ import ilustracion03 from '@assets/ilustraciones/03-min.webp'
       </a>
       <div class='relative rounded-full shadow-sm flex items-start flex-col flex-1'>
         <h5 class='text-sm'>
-          <strong class='text-zinc-900' transition:name={`name-${id}`}>{name}</strong> está en <strong class='text-zinc-900'>Atlantis Ibiza.</strong>
+          <strong class='text-zinc-900' transition:name={`name-${id}`}>{name}</strong> está en <strong
+            class='text-zinc-900'>Atlantis Ibiza.</strong
+          >
         </h5>
         <p class='text-xs'>44 minutos · Ibiza, Islas Baleares · 🌍</p>
       </div>

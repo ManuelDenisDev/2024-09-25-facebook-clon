@@ -1,5 +1,13 @@
 ---
-const { id, name, image, race } = Astro.props
+
+interface AstroProps {
+  id: string
+  name: string
+  image: string
+  race: keyof typeof raceColors
+}
+
+const { id, name, image, race } = Astro.props as AstroProps
 
 const raceColors = {
   Human: 'bg-gradient-to-r from-sky-400 to-cyan-300',

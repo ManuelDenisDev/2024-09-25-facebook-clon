@@ -1,7 +1,7 @@
 import {
   type APIDragonBallResponse,
   type Item,
-} from "@types/APIDragonBallPersonajesResponse";
+} from "../types/APIDragonBallPersonajesResponse";
 
 const baseURL = "https://dragonball-api.com/api/characters";
 

@@ -1,7 +1,5 @@
-import {
-  type APIDragonBallPlanetasResponse,
-  type Item,
-} from "@types/APIDragonBallPlanetasResponse";
+import type { Item } from "../types/APIDragonBallPersonajesResponse";
+import type { APIDragonBallPlanetasResponse } from "../types/APIDragonBallPlanetasResponse";
 
 const baseURL = "https://dragonball-api.com/api/planets";
 

@@ -1,11 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components'
-import AsideLeftAccesosDirectos from './AsideLeftAccesosDirectos.astro'
-import AsideLeftMenuItemFoto from './AsideLeftMenuItemFoto.astro'
 import AsideLeftMenuItemIcon from './AsideLeftMenuItemIcon.astro'
-import AsideTituloIcono from './shared/AsideTituloIcono.astro'
-import AsideTitulos from './shared/AsideTitulos.astro'
-import Separador from './shared/Separador.astro'
 
 const dataSidebarVideoTitulos = [{ titulo: 'Videos', icono: 'video-outline' }]
 
@@ -16,24 +11,6 @@ const dataSidebarVideoLinks = [
   { icono: 'clapper', titulo: 'Programas', href: '/programas' },
   { icono: 'launch-outline', titulo: 'Explorar', href: '/explorar' },
   { icono: 'bookmark', titulo: 'Videos guardados', href: '/guardados' }
-]
-
-import fotoPerfil from '@assets/mandendev-foto-perfil.png'
-
-const dataAsideLeftAccesos = [
-  { nombre: 'Spotify Clone', categoria: 'Practicas', imagen: fotoPerfil },
-  { nombre: 'Elena Cibaja', categoria: 'Portafolio', imagen: fotoPerfil },
-  { nombre: 'ManDenDev', categoria: 'Portafolio', imagen: fotoPerfil }
-]
-
-const dataAsideLeftFooter = [
-  { nombre: 'Privacidad', link: '#' },
-  { nombre: 'Condiciones', link: '#' },
-  { nombre: 'Publicidad', link: '#' },
-  { nombre: 'Opciones de anuncios', link: '#' },
-  { nombre: 'Cookies', link: '#' },
-  { nombre: 'Más', link: '#' },
-  { nombre: 'Madebook © 2024', link: '#' }
 ]
 ---
 
