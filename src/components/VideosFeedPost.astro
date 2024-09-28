@@ -30,7 +30,7 @@ const raceColors = {
 }
 ---
 
-<article class='bg-white rounded-xl py-2 px-4 flex mx-auto max-w-4xl flex-col gap-2 mt-4'>
+<article class='bg-white rounded-xl py-2 px-4 flex mx-auto lg:max-w-3xl xl:max-w-4xl flex-col gap-2 mt-4'>
   <header class='flex items-center mt-2 justify-between gap-2'>
     <a href='/' class='bg-zinc-200 rounded-full flex items-center justify-center'>
       <img
@@ -48,7 +48,7 @@ const raceColors = {
   </header>
   <main class='flex flex-col gap-2'>
     <p>{publicacion}</p>
-    <ul class='flex gap-2 font-light'>
+    <ul class='flex flex-wrap gap-2 font-light'>
       {tags.map((tag: string) => <li>{tag}</li>)}
     </ul>
     <video width='100%' controls muted autoplay transition:persist>
