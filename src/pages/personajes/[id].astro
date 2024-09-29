@@ -1,89 +1,85 @@
 ---
-import { getPersonajesDBZ, getPersonajesDBZById } from '@services/personajesDBZ'
-import { getPlanetasDBZById } from '@services/planetasDBZ'
+import { getPersonajesDBZ, getPersonajesDBZById } from '@services/personajesDBZ';
+import { getPlanetasDBZById } from '@services/planetasDBZ';
 
-import { Icon } from 'astro-icon/components'
-import { Image } from 'astro:assets'
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 
-import PersonajesLayout from '@layouts/PersonajesLayout.astro'
+import PersonajesLayout from '@layouts/PersonajesLayout.astro';
 
-import FooterButtonAmigos from '@components/shared/FooterButtonAmigos.astro'
-import HeaderPost from '@components/shared/HeaderPost.astro'
-import MainHeader from '@components/MainHeader.astro'
-import MarginTop from '@components/shared/MarginTop.astro'
-import MarginTopPersonajes from '@components/shared/MarginTopPersonajes.astro'
-import Separador from '@components/shared/Separador.astro'
+import FooterButtonAmigos from '@components/shared/FooterButtonAmigos.astro';
+import HeaderPost from '@components/shared/HeaderPost.astro';
+import MainHeader from '@components/MainHeader.astro';
+import MarginTop from '@components/shared/MarginTop.astro';
+import MarginTopPersonajes from '@components/shared/MarginTopPersonajes.astro';
+import Separador from '@components/shared/Separador.astro';
 
-import ilustracion01 from '@assets/ilustraciones/01-min.webp'
-import ilustracion02 from '@assets/ilustraciones/02-min.webp'
-import ilustracion03 from '@assets/ilustraciones/03-min.webp'
-import type { Item } from '../../types/APIDragonBallPersonajesResponse'
+import ilustracion01 from '@assets/ilustraciones/01-min.webp';
+import ilustracion02 from '@assets/ilustraciones/02-min.webp';
+import ilustracion03 from '@assets/ilustraciones/03-min.webp';
+import type { Item } from '../../types/APIDragonBallPersonajesResponse';
+import FooterButtonFeed from '@components/shared/FooterButtonFeed.astro';
+import FotoPerfil from '@components/shared/FotoPerfil.astro';
 
 interface AstroProps {
-  id: string
-  name: string
-  race: keyof typeof raceColors
-  image: string
-  affiliation: string
-  imageFeed: string
-  tags: string[]
-  publicacion: string
+  id: string;
+  name: string;
+  race: keyof typeof raceColors;
+  image: string;
+  affiliation: string;
+  imageFeed: string;
+  tags: string[];
+  publicacion: string;
   originPlanet: {
-    name: string
-  }
+    name: string;
+  };
 }
 
-export const prerender = false
+export const prerender = false;
 
-const { id } = Astro.params
+const { id } = Astro.params;
 
-let personaje
+let personaje;
 if (id) {
-  personaje = await getPersonajesDBZById({ id: String(id) })
+  personaje = await getPersonajesDBZById({ id: String(id) });
 }
 
-let planeta
+let planeta;
 if (personaje) {
-  planeta = await getPlanetasDBZById({ id: String(id) })
+  planeta = await getPlanetasDBZById({ id: String(id) });
 }
 
-let listadoPersonajes: Item[] | undefined
+let listadoPersonajes: Item[] | undefined;
 if (personaje) {
-  listadoPersonajes = await getPersonajesDBZ()
+  listadoPersonajes = await getPersonajesDBZ();
 }
 
 export async function getStaticPaths() {
-  const personajes = await getPersonajesDBZ()
+  const personajes = await getPersonajesDBZ();
 
   return personajes?.map((personaje) => ({
     params: {
       id: personaje.id
     }
-  }))
+  }));
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
-  const personaje = await getPersonajesDBZById({ id: params.id })
+  const personaje = await getPersonajesDBZById({
+    id: params.id
+  });
 
   return {
     props: {
       personaje
     }
-  }
+  };
 }
-console.log(personaje)
 
-const { name, image, race, originPlanet, affiliation, imageFeed, publicacion } = personaje as unknown as AstroProps
-const { name: planetName } = planeta as unknown as AstroProps
+const { name, image, race, originPlanet, affiliation, imageFeed, publicacion } = personaje as unknown as AstroProps;
+const { name: planetName } = planeta as unknown as AstroProps;
 
-const tags = [
-  '#dragonBall',
-  '#facebooZ',
-  `#${race.toLowerCase()}`,
-  `#planeta${originPlanet.name}`,
-  `#${name.toLowerCase()}`,
-  `#${affiliation.trim().replace(' ', '')}`
-]
+const tags = ['#dragonBall', '#facebooZ', `#${race.toLowerCase()}`, `#planeta${originPlanet.name}`, `#${name.toLowerCase()}`, `#${affiliation.trim().replace(' ', '')}`];
 
 const raceColors = {
   Human: 'bg-gradient-to-r from-sky-400 to-cyan-300',
@@ -95,12 +91,10 @@ const raceColors = {
   'Jiren Race': 'bg-gradient-to-tr from-violet-500 to-orange-300',
   'God Angel': 'bg-teal-500',
   Evil: 'bg-black',
-  Nucleico:
-    'bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-violet-600 to-sky-900',
-  'Nucleico benigno':
-    'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-300 via-fuchsia-600 to-orange-600',
+  Nucleico: 'bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-violet-600 to-sky-900',
+  'Nucleico benigno': 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-300 via-fuchsia-600 to-orange-600',
   Unknown: 'bg-gradient-to-r from-teal-200 to-lime-200'
-}
+};
 
 const dataLinksPerfil = [
   { text: 'Publicaciones', href: '#', icon: '' },
@@ -110,28 +104,13 @@ const dataLinksPerfil = [
   { text: 'Videos', href: '#', icon: '' },
   { text: 'Registro de visitas', href: '#', icon: '' },
   { text: 'Más', href: '#', icon: 'chevron-down' }
-]
+];
 
 const dataMainHeaderButton = [
-  {
-    icon: 'images-outline',
-    texto: 'Foto/Video',
-    classNameButton: 'flex',
-    classNameIcon: 'text-green-500'
-  },
-  {
-    icon: 'user-shield',
-    texto: 'Etiquetar personas',
-    classNameButton: 'flex',
-    classNameIcon: 'text-blue-500'
-  },
-  {
-    icon: 'smile-outline',
-    texto: 'Sentimiento/Actividad',
-    classNameButton: 'hidden md:flex',
-    classNameIcon: 'text-amber-400 '
-  }
-]
+  { icon: 'images-outline', texto: 'Foto/Video', classNameButton: 'flex', classNameIcon: 'text-green-500' },
+  { icon: 'user-shield', texto: 'Etiquetar personas', classNameButton: 'flex', classNameIcon: 'text-blue-500' },
+  { icon: 'smile-outline', texto: 'Sentimiento/Actividad', classNameButton: 'hidden md:flex', classNameIcon: 'text-amber-400' }
+];
 
 const dataMejoresAmigos = [
   { id: 1, numero: 7 },
@@ -139,7 +118,7 @@ const dataMejoresAmigos = [
   { id: 3, numero: 23 },
   { id: 4, numero: 24 },
   { id: 5, numero: 5 }
-]
+];
 ---
 
 <PersonajesLayout title={`${id} Madebook - Clone de Facebook realizado con Astro.builds por Manuel Denis.`}>
@@ -148,7 +127,7 @@ const dataMejoresAmigos = [
   <div class='bg-gradient-to-b from-blue-300 via-white to-white w-full -z-10'>
     <header class='bg-white flex-col mx-auto max-w-7xl'>
       <figure class=''>
-        <img src='/public/ilustraciones/01-min.webp' alt='Ilustracion' class='w-full aspect-[16/6] object-cover' />
+        <img src='/ilustraciones/01-min.webp' alt='Ilustracion' class='w-full aspect-[16/6] object-cover' />
       </figure>
       <div class='flex justify-between items-end gap-4 mx-8 -translate-y-12'>
         <a href='/' class='bg-zinc-200 rounded-full flex items-center justify-center border-4 border-white'>
@@ -159,7 +138,9 @@ const dataMejoresAmigos = [
           />
         </a>
         <div class='flex-1 mb-4 flex gap-2 flex-col'>
-          <h1 class='text-3xl font-bold text-zinc-900'>{name}</h1>
+          <h1 class='text-3xl font-bold text-zinc-900'>
+            {name}
+          </h1>
           <div class='font-semibold text-zinc-600 text-xs tracking-wide'>
             <span class=''>1,2 mil amigos</span>
             <span>·</span>
@@ -168,36 +149,18 @@ const dataMejoresAmigos = [
           <div class='flex ml-3'>
             {
               dataMejoresAmigos.map(({ numero }) => (
-                <span
-                  class={`size-8 overflow-hidden items-center justify-center border-2 border-white rounded-full -ml-3 z-[${id}]  ${raceColors[race]} bg-white`}
-                >
+                <span class={`size-8 overflow-hidden items-center justify-center border-2 border-white rounded-full -ml-3 z-[${id}]  ${raceColors[race]} bg-white`}>
                   {' '}
-                  {listadoPersonajes && listadoPersonajes[numero] && (
-                    <img src={listadoPersonajes[numero].image} class='object-contain scale-125 object-top ' />
-                  )}
+                  {listadoPersonajes && listadoPersonajes[numero] && <img src={listadoPersonajes[numero].image} class='object-contain scale-125 object-top ' />}
                 </span>
               ))
             }
           </div>
         </div>
         <div class='flex gap-4 mb-4'>
-          <FooterButtonAmigos
-            icon='user-check'
-            texto='Amigos'
-            classNameButton='bg-blue-500 text-white px-4 gap-2 font-semibold'
-            classNameIcon=''
-          />
-          <FooterButtonAmigos
-            icon='messenger'
-            texto='Mensaje'
-            classNameButton='bg-zinc-300 px-4 gap-2 font-semibold hover:bg-zinc-100 text-zinc-900'
-            classNameIcon=''
-          />
-          <FooterButtonAmigos
-            icon='chevron-down'
-            classNameButton='bg-zinc-300 px-4 py-2 gap-1 font-bold'
-            classNameIcon=''
-          />
+          <FooterButtonAmigos icon='user-check' texto='Amigos' classNameButton='bg-blue-500 text-white px-4 gap-2 font-semibold' classNameIcon='' />
+          <FooterButtonAmigos icon='messenger' texto='Mensaje' classNameButton='bg-zinc-300 px-4 gap-2 font-semibold hover:bg-zinc-100 text-zinc-900' classNameIcon='' />
+          <FooterButtonAmigos icon='chevron-down' classNameButton='bg-zinc-300 px-4 py-2 gap-1 font-bold' classNameIcon='' />
         </div>
       </div>
       <Separador />
@@ -220,8 +183,8 @@ const dataMejoresAmigos = [
     </header>
   </div>
   <MarginTop />
-  <div class='grid grid-cols-10 bg-green-500 gap-4 flex-col mx-auto max-w-7xl'>
-    <aside class='col-span-4 bg-red-500 flex flex-col w-full'>
+  <div class='grid grid-cols-10 gap-4 flex-col mx-auto max-w-7xl'>
+    <aside class='col-span-4 flex flex-col w-full'>
       <section class='bg-white rounded-xl py-2 px-4 flex mx-auto w-full flex-col gap-2'>
         <h3>Detalles</h3>
         <p>
@@ -229,7 +192,7 @@ const dataMejoresAmigos = [
         </p>
       </section>
     </aside>
-    <main class='col-span-6 bg-blue-500 flex w-full flex-col'>
+    <main class='col-span-6 flex w-full flex-col'>
       <MainHeader data={dataMainHeaderButton} className='max-w-full' />
       <main class='bg-white rounded-xl flex mx-auto flex-col gap-2 mt-4'>
         <HeaderPost name={name} planets={planetName} image={image} race={race} affiliation={affiliation} />
@@ -239,27 +202,53 @@ const dataMejoresAmigos = [
             {tags.map((tag: string) => <li>{tag}</li>)}
           </ul>
         </main>
-        <div class='grid grid-cols-2 gap-1'>
+        <figure class='grid'>
           <img
             src={image}
             alt={name}
             class={`w-full aspect-square object-cover object-top ${raceColors[race] || 'bg-gradient-to-b from-gray-900 to-gray-600 '} `}
             transition:name={`image-${id}`}
           />
-          <Image src={ilustracion01} alt='Ilustracion' class='w-full aspect-square object-cover' />
-          <Image src={ilustracion02} alt='Ilustracion' class='w-full aspect-square object-cover' />
-          <Image src={ilustracion03} alt='Ilustracion' class='w-full aspect-square object-cover' />
-        </div>
-        <footer>
-          <div class='flex justify-between items-center text-sm font-light gap-2'>
-            <div class='flex'>
-              <Icon name='megusta-circulo' class='size-4' />
-              <Icon name='meencanta-circulo' class='size-4 -ml-1' />
+        </figure>
+        <footer class='mx-4'>
+          <div class='flex flow-row justify-between items-center text-sm font-light gap-x-2'>
+            <div class='hidden lg:flex'>
+              <span class='size-8 flex items-center justify-center rounded-full z-[6] bg-white'><strong class='text-xl'>👍🏻</strong></span>
+              <span class='size-8 flex items-center justify-center rounded-full z-[5] -ml-3 bg-white'><strong class='text-xl'>❤️</strong></span>
+              <span class='size-8 flex items-center justify-center rounded-full z-[4] -ml-3 bg-white'><strong class='text-xl'>😍</strong></span>
+              <span class='size-8 flex items-center justify-center rounded-full z-[3] -ml-3 bg-white'><strong class='text-xl'>😂</strong></span>
+              <span class='size-8 flex items-center justify-center rounded-full z-[2] -ml-3 bg-white'><strong class='text-xl'>😮</strong></span>
+              <span class='size-8 flex items-center justify-center rounded-full z-[1] -ml-3 bg-white'><strong class='text-xl'>😭</strong></span>
+              <span class='size-8 flex items-center justify-center rounded-full z-[0] -ml-3 bg-white'><strong class='text-xl'>😡</strong></span>
             </div>
-            <span class='flex-1'>Fernando Duran, Robert T San y 2 más</span>
+            <span class='flex-1'>Cell, Piccolo, Goku y 24 personas más</span>
             <span>1 comentario</span>
           </div>
           <Separador />
+          <div class='flex items-center justify-center font-semibold my-1'>
+            <FooterButtonFeed icon='megusta-outline' texto='Me gusta' />
+            <FooterButtonFeed icon='comentar-outline' texto='Comentar' />
+            <FooterButtonFeed icon='compartir-outline' texto='Whatsapp' />
+            <FooterButtonFeed icon='compartir-outline' texto='Compartir' />
+          </div>
+          <Separador />
+          <div class='flex items-center justify-between gap-2'>
+            <a
+              href='/'
+              class='bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-200 via-gray-400 to-gray-600 rounded-full flex items-center justify-center'
+            >
+              <FotoPerfil className='size-10' />
+            </a>
+            <div class='relative rounded-full shadow-sm flex flex-1'>
+              <input
+                type='text'
+                name='price'
+                id='price'
+                class='block w-full rounded-full border-0 py-1.5 pl-7 pr-20 text-zinc-900 ring-1 ring-inset ring-zinc-100 bg-zinc-100 placeholder:text-zinc-900 focus:ring-1 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 focus:outline-none'
+                placeholder='¿Qué estás pensando, Manuel?'
+              />
+            </div>
+          </div>
         </footer>
       </main>
     </main>
